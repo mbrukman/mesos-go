@@ -32,7 +32,6 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
-	"os"
 	"os/user"
 	"sync"
 	"testing"
@@ -134,7 +133,7 @@ func TestSchedulerDriverNew(t *testing.T) {
 	assert.NoError(t, err)
 	user, _ := user.Current()
 	assert.Equal(t, user.Username, driver.FrameworkInfo.GetUser())
-	host, _ := os.Hostname()
+	host := util.GetHostname("")
 	assert.Equal(t, host, driver.FrameworkInfo.GetHostname())
 }
 
